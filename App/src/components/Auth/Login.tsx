@@ -1,22 +1,21 @@
-import { SetStateAction, useState } from "react";
-import Header from "../Header";
+import { SetStateAction, useState } from 'react';
+import Header from '../Reusable/Header';
 
 const Login = () => {
+	<Header />;
 
-	<Header />
-	
-	const [email,setEmail] = useState("");
-	const [password,setPassword] = useState("");
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
 	function handleClick() {
 		alert('Clicked');
 	}
 
-	function handleEmail(e: { target: { value: SetStateAction<string>; }; }){
+	function handleEmail(e: { target: { value: SetStateAction<string> } }) {
 		setEmail(e.target.value);
 	}
 
-	function handlePassword(e: { target: { value: SetStateAction<string>; }; }){
+	function handlePassword(e: { target: { value: SetStateAction<string> } }) {
 		setPassword(e.target.value);
 	}
 	return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TaskCard from '../TaskCard';
+import TaskCard from '../Reusable/TaskCard';
 
 interface Task {
 	name: string;
@@ -9,11 +9,33 @@ interface Task {
 }
 
 const TaskIndex: React.FC = () => {
-
-	const [tasks, setTasks] = useState<Task[]>([]);
-	const [newTask, setNewTask] = useState<string>('');
-	const [newDescription, setNewDescription] = useState<string>('');
-
+	// Hardcoded tasks
+	const [tasks, setTasks] = useState<Task[]>([
+		{
+			name: 'Finish Project Report',
+			description: 'Complete the final project report and submit by end of the week.',
+			date: new Date().toLocaleDateString(),
+			isCompleted: false,
+		},
+		{
+			name: 'Team Meeting',
+			description: 'Attend the team meeting to discuss project updates.',
+			date: new Date().toLocaleDateString(),
+			isCompleted: false,
+		},
+		{
+			name: 'Code Review',
+			description: 'Review the codebase and provide feedback on pull requests.',
+			date: new Date().toLocaleDateString(),
+			isCompleted: false,
+		},
+		{
+			name: 'Client Presentation',
+			description: 'Prepare and deliver the presentation to the client.',
+			date: new Date().toLocaleDateString(),
+			isCompleted: false,
+		},
+	]);
 
 	const handleComplete = (index: number) => {
 		const updatedTasks = tasks.map((task, i) =>
@@ -22,46 +44,8 @@ const TaskIndex: React.FC = () => {
 		setTasks(updatedTasks);
 	};
 
-	const handleAddTask = () => {
-		if (newTask.trim() === '' || newDescription.trim() === '') return;
-
-		const taskObj: Task = {
-			name: newTask,
-			description: newDescription,
-			date: new Date().toLocaleDateString(),
-			isCompleted: false,
-		};
-
-		setTasks([...tasks, taskObj]);
-		setNewTask('');
-		setNewDescription('');
-	};
-
 	return (
 		<div className='flex flex-col items-center mt-10'>
-			{/* Task input */}
-			<div className='flex justify-center mb-6 gap-2'>
-				<input
-					type='text'
-					className='border border-gray-300 rounded-lg px-4 py-2'
-					value={newTask}
-					onChange={(e) => setNewTask(e.target.value)}
-					placeholder='Enter task name...'
-				/>
-				<input
-					type='text'
-					className='border border-gray-300 rounded-lg px-4 py-2'
-					value={newDescription}
-					onChange={(e) => setNewDescription(e.target.value)}
-					placeholder='Enter task description...'
-				/>
-				<button
-					className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600'
-					onClick={handleAddTask}>
-					Add Task
-				</button>
-			</div>
-
 			{/* Task list */}
 			<div
 				id='tasklist'
